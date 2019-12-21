@@ -52,4 +52,4 @@ Result:
 |P54366|Gsc|Homeobox protein goosecoid|Drosophila melanogaster (Fruit fly)|Appears to regulate regional development of specific tissues. Can rescue axis polarity in UV-radiated Xenopus embryos.|
 |...|...|...|...|...|
 
-***PS: You might lost some ID duto the internet problem. My suggestion is Collecting the ID and run it again. ***
+***PS: You might lost some entries duto the internet problem. My suggestion is Collecting the entries and run it again. ***
