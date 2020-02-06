@@ -43,6 +43,7 @@ def NCBI_grep(i):
     html = urlopen(url).read().decode('utf-8')
     soup = BeautifulSoup(html, features='lxml')
     Infor = soup.find_all('tr', {'valign':'top'})
+    #GSM ID, Title, Charaacteristics ...
     Sample_r = Infor[0].get_text().split('\n')[0].replace('Sample ','')
     Title_r = print_result('Title',Infor)
     Cha = print_result('Characteristics',Infor).replace('gender','\nGender').replace('smoking','\nsmoking').replace('Stage','\nStage').split('\n')
