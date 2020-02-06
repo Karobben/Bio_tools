@@ -6,8 +6,11 @@
 
 ## <a id="NCBI_GSM">NCBI_GSM.py</a>
 
-It is not easy to crawling information via request. But we can easily get the same information from Uniprot with the same ID.
-So, we can get even more information than by crawling in NCBI.
+This Script is designed for crawling GSM ID, GSM2268339 for instants, information form NCBI database.<br>
+An example target website: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2268339<br>
+You can get the GSM ID, Title, Characteristics, et al, with a GSM list.<br>
+But due to the unique information pattern of each GSM-group, try to fit the script by your
+targets and test it before running it.
 
 ```
 NCBI_GSM.py -i list -o result.csv
