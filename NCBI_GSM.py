@@ -1,4 +1,11 @@
 #!/usr/bin/env python3.7
+'''
+This Script is designed for crawling GSM ID, GSM2268339 for instants, information form NCBI database.
+An example target website: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2268339
+You can get the GSM ID, Title, Characteristics, et al, with a GSM list.
+But due to the unique information pattern of each GSM-group, try to fit the script by your
+targets and test it before running it.
+'''
 import argparse
 
 #命令行输入参数处理
