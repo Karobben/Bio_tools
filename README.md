@@ -6,7 +6,8 @@
 
 ## <a id="NCBI_GSM">NCBI_GSM.py</a>
 
-I FORGET what is this script for = = Mybe I will update later... or deletet it.
+It is not easy to crawling information via request. But we can easily get the same information from Uniprot with the same ID.
+So, we can get even more information than by crawling in NCBI.
 
 ```
 NCBI_GSM.py -i list -o result.csv
