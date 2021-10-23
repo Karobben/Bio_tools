@@ -12,16 +12,19 @@ parser.add_argument('-i','-I','--input',
 parser.add_argument('-o','-O','--output',
     help = "输出文件前缀",
     default = "Karobben")     #输入文件
-
 parser.add_argument('-t','-T','--tree',
     help = "NJ | UPGMA; default = NJ",
     default = "NJ")     #输入文件
+parser.add_argument('-s','-S','--tree_size',
+    help = "w,h size of the tree png; default = 7,7",
+    default = "7,7")     #输入文件
 
 ##获取参数
 args = parser.parse_args()
 INPUT  = args.input
 OUTPUT = args.output
 ARG_TREE = args.tree
+ARG_TREE_SIZE = args.tree_size
 
 
 ## Pre-align
@@ -102,6 +105,14 @@ print(align_branch)
 
 ### save the tree as png
 PATH_lib = os.path.dirname(__file__)
-CMD = "Rscript " + PATH_lib + "/lib/R/ggtree.R " + OUTPUT +  "_gap.phb"
+
+R_w = ARG_TREE_SIZE.split(",")[0]
+R_h = ARG_TREE_SIZE.split(',')[1]
+
+R_ARG = "##".join([OUTPUT+"_gap.phb",
+        R_w , R_h])
+
+
+CMD = "Rscript " + PATH_lib + "/lib/R/ggtree.R " + R_ARG
 print(CMD)
 os.system(CMD)
