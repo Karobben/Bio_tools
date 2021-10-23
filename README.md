@@ -1,9 +1,13 @@
 # Karobben-Work-Station
 
-<a href="#NCBI_GSM">NCBI_GSM.PY</a> (I forget what's the function of this one = =)
 
-<a href="#Uniprot">Uniport.py</a>  (Annotate your Uniprot ID)
-<a href="#k2u">Kegg2Uniport.py</a>  (From 1 *koID* to a *UniportID* list)
+| Scrips | Functions  | 中文|
+| :------------- | :------------ | :- |
+| Item One       | Item Two       | |
+|[NCBI_GSM.PY](#NCBI_GSM)| I forget what's the function of this one = =|
+|<a href="#Uniprot">Uniport.py</a> |Annotate your Uniprot ID|Uniport ID 的注释说明|
+|<a href="#k2u">Kegg2Uniport.py</a> |From  *koID* to a *UniportID* list|把 KO 的 ID 转化成 Uniport ID|
+|[Seq2tree.py](#seq2tree)| Quickest Pipeline to plot a tree from a fasta file with python and R script| 超快的fasta文件一键建树画图脚本|
 
 ## <a id="NCBI_GSM">NCBI_GSM.py</a>
 
@@ -75,3 +79,19 @@ A0A088AP91	A0A088AP91_APIME	Uncharacterized protein
 A0A094ZG88	A0A094ZG88_SCHHA	F-box domain-containing protein
 ...
 ```
+
+## <a id="seq2tree">Seq2tree.py</a>
+
+More details: [More details: Blog](https://karobben.github.io/2021/10/22/Bioinfor/biopython-seq2tree/)
+
+Rely:
+- python: Biopython;
+- R: ggtree
+
+Pipeline:
+1. Biopython use clustalw2 to align fasta file
+2. Trimming the gap from head and tail
+3. Build tree file with trimmed sequences
+4. Visualizing tree through ggtree with R
+
+![Quick Tree](https://z3.ax1x.com/2021/10/23/5g649f.png)
