@@ -29,7 +29,7 @@ ARG_TREE_SIZE = args.tree_size
 
 ## Pre-align
 
-cwline = ClustalwCommandline("clustalw2", infile= INPUT, outfile = OUTPUT + ".fasta",  output= "fasta" )
+cwline = ClustalwCommandline("clustalw", infile= INPUT, outfile = OUTPUT + ".fasta",  output= "fasta" )
 print(cwline)
 stdout, stderr = cwline()
 
@@ -90,7 +90,7 @@ F2.close()
 ##
 # Make Phylogenetic Tree
 
-cwline = ClustalwCommandline("clustalw2", infile= OUTPUT + "_gap.fa",  clustering = ARG_TREE, bootstrap = 1000)
+cwline = ClustalwCommandline("clustalw", infile= OUTPUT + "_gap.fa",  clustering = ARG_TREE, bootstrap = 1000)
 print(cwline)
 stdout, stderr = cwline()
 
