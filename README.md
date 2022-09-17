@@ -8,6 +8,8 @@
 |<a href="#Uniprot">Uniport.py</a> |Annotate your Uniprot ID|Uniport ID 的注释说明|
 |<a href="#k2u">Kegg2Uniport.py</a> |From  *koID* to a *UniportID* list|把 KO 的 ID 转化成 Uniport ID|
 |[Seq2tree.py](#seq2tree)| Quickest Pipeline to plot a tree from a fasta file with python and R script| 超快的fasta文件一键建树画图脚本|
+|[vcf2fasta.py](#vcf2fasta)||
+
 
 ## <a id="NCBI_GSM">NCBI_GSM.py</a>
 
@@ -95,3 +97,11 @@ Pipeline:
 4. Visualizing tree through ggtree with R
 
 ![Quick Tree](https://z3.ax1x.com/2021/10/23/5g649f.png)
+
+## <a id="vcf2fasta">vcf2fasta.py</a>
+
+This script is designed for extract the fasta from vcf. Based on the reference genome, and the position information from vcf file, base in reference changed into alternative base. More detailed information can be found in [Karobben: Extract Fasta from VCF; 2022](https://karobben.github.io/2022/09/16/Bioinfor/fastafromvcf/)
+
+```bash
+python vcf2fasta.py -g Genome.fa -v File.vcf.gz -t Target.csv
+```
