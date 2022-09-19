@@ -105,3 +105,6 @@ This script is designed for extract the fasta from vcf. Based on the reference g
 ```bash
 python vcf2fasta.py -g Genome.fa -v File.vcf.gz -t Target.csv
 ```
+
+For revers the "-" sequences, you can add `-d`
+For Connect rest of intervenes, you can add `-c`

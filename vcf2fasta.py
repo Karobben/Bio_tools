@@ -1,22 +1,34 @@
 #!/usr/bin/env python3
 import gzip
+import warnings
 import argparse
 import pandas as pd
 from Bio import SeqIO
 from Bio import pairwise2
 from Bio.pairwise2 import format_alignment
 
+warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-g','-G','--genome')
 parser.add_argument('-v','-V','--vcf')
 parser.add_argument('-t','-T','--table')
+parser.add_argument('-d','-D','--redirect', default='No',  nargs='?', help="Redorect sequence according to the table(+/-). default=Yes")
+parser.add_argument('-s','-S','--verbos', default='Yes',  nargs='?', help="Pring logs. default=Yes")
+parser.add_argument('-c','-C','--connect', default='No',  nargs='?', help="connect rest of gaps. default=No")
 
 ##获取参数
 args = parser.parse_args()
 Genome = args.genome
 VCF_file = args.vcf
 Target = args.table
+Redirect = args.redirect
+Verbos = args.verbos
+Connect = args.connect
+
+def Vprint(Str):
+    if Verbos != "No":
+        print(Str)
 
 def get_vcf_names(vcf_path):
     with gzip.open(vcf_path, "rt") as ifile:
@@ -27,15 +39,37 @@ def get_vcf_names(vcf_path):
     ifile.close()
     return vcf_names
 
+
+if Verbos == None:
+    Verbos = "No"
+else:
+    Verbos = "Yes"
+
+if Redirect == None:
+    Redirect = "Yes"
+else:
+    Redirect = "No"
+
+if Connect == None:
+    Connect = "Yes"
+else:
+    Connect = "No"
+
+
+print("vcf2fasta.py -g", Genome, "-v", VCF_file, "-t", Target, "-d", Redirect, "-s", Verbos, "-c", Connect)
+
+Vprint("Reading VCF file: " + VCF_file)
 SAMPLE = VCF_file.replace(".vcf.gz", "")
 names = get_vcf_names(VCF_file)
 vcf = pd.read_csv('G1FFH.vcf.gz', compression='gzip', comment='#',  header=None, names=names, sep='\t')
 
+Vprint("Reading Gene table: " + Target)
 TARGET = pd.read_csv(Target, sep='\t')
 
+Vprint("Start to replacing...")
 for seq_record in SeqIO.parse(Genome, "fasta"):
     if seq_record.id in TARGET.CHROM.unique():
-        print("Chrom:", seq_record.id)
+        Vprint(" ".join(["Chrom:", seq_record.id]))
         TB = pd.DataFrame([*seq_record.seq])
         TB['REF'] = ""
         TB['ALT'] = ""
@@ -66,13 +100,19 @@ for seq_record in SeqIO.parse(Genome, "fasta"):
         for i in range(len(TARGET[TARGET.CHROM==seq_record.id])):
             FROM =TARGET.START[TARGET.CHROM==seq_record.id][i]
             END = TARGET.END[TARGET.CHROM==seq_record.id][i]
-            print(FROM,END)
+            NAME = TARGET.NAME[TARGET.CHROM==seq_record.id][i]
+
+            Vprint(" ".join([seq_record.id, str(i+1), NAME, str(FROM), str(END)]))
+
             STR1 = "".join(TB[0][TB.index.isin(range(FROM-1,END))].to_list())
             STR2 = "".join(TMP[TMP.index.isin(range(FROM-1,END))].to_list())
-            F.write(">"+TARGET.NAME[TARGET.CHROM==seq_record.id][i] + "_" + SAMPLE + "\n" + STR2 + "\n" )
+            if Redirect == "Yes" and TARGET.Dirc[TARGET.CHROM==seq_record.id][i] =="-":
+                STR2 = STR2[::-1]
+            F.write(">"+ NAME + "_" + SAMPLE + "\n" + STR2 + "\n" )
             LIST += range(FROM-1,END)
 
-        F.write(">NonHit_" + SAMPLE + "\n" + "".join(TMP[~TMP.index.isin(LIST)]) + "\n" )
+        if Connect == "Yes":
+            F.write(">NonHit_" + SAMPLE + "\n" + "".join(TMP[~TMP.index.isin(LIST)]) + "\n" )
 
         F.close()
 
