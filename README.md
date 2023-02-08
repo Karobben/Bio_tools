@@ -9,7 +9,7 @@
 |<a href="#k2u">Kegg2Uniport.py</a> |From  *koID* to a *UniportID* list|把 KO 的 ID 转化成 Uniport ID|
 |[Seq2tree.py](#seq2tree)| Quickest Pipeline to plot a tree from a fasta file with python and R script| 超快的fasta文件一键建树画图脚本|
 |[vcf2fasta.py](#vcf2fasta)||
-
+|[Dem2Homo.py](#Dem2Homo)|A py script to turn fly gene (Flybase id) to human ortholog genes|
 
 ## <a id="NCBI_GSM">NCBI_GSM.py</a>
 
@@ -108,3 +108,9 @@ python vcf2fasta.py -g Genome.fa -v File.vcf.gz -t Target.csv
 
 For revers the "-" sequences, you can add `-d`
 For Connect rest of intervenes, you can add `-c`
+
+## <a id='Dem2Homo'>Dme2Homo.py</a>
+
+```bash
+Dem2Homo.py -i FBgn0039044 FBgn0004647
+```
