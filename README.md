@@ -4,14 +4,14 @@
 | Scrips | Functions  | 中文|
 | :------------- | :------------ | :- |
 | Item One       | Item Two       | |
-|[NCBI_GSM.PY](#NCBI_GSM)| I forget what's the function of this one = =|
-|<a href="#Uniprot">Uniport.py</a> |Annotate your Uniprot ID|Uniport ID 的注释说明|
+|[NCBI_GSM.PY](#ncbi_gsm)| I forget what's the function of this one = =|
+|<a href="#uniprot">Uniport.py</a> |Annotate your Uniprot ID|Uniport ID 的注释说明|
 |<a href="#k2u">Kegg2Uniport.py</a> |From  *koID* to a *UniportID* list|把 KO 的 ID 转化成 Uniport ID|
 |[Seq2tree.py](#seq2tree)| Quickest Pipeline to plot a tree from a fasta file with python and R script| 超快的fasta文件一键建树画图脚本|
 |[vcf2fasta.py](#vcf2fasta)||
 |[Dem2Homo.py](#Dem2Homo)|A py script to turn fly gene (Flybase id) to human ortholog genes|
 
-## <a id="NCBI_GSM">NCBI_GSM.py</a>
+## <a id="ncbi_gsm">NCBI_GSM.py</a>
 
 This Script is designed for crawling GSM ID, GSM2268339 for instants, information form NCBI database.<br>
 An example target website: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2268339<br>
@@ -25,7 +25,7 @@ NCBI_GSM.py -i list -o result.csv
 feel free
 
 
-## <a id="Uniprot">Uniprot.py</a>
+## <a id="uniprot">Uniprot.py</a>
 
 This script is for annotating the UNPROT ID by usring Python Crawler
 
@@ -109,7 +109,7 @@ python vcf2fasta.py -g Genome.fa -v File.vcf.gz -t Target.csv
 For revers the "-" sequences, you can add `-d`
 For Connect rest of intervenes, you can add `-c`
 
-## <a id='Dem2Homo'>Dme2Homo.py</a>
+## <a id='dem2homo'>Dme2Homo.py</a>
 
 ```bash
 Dem2Homo.py -i FBgn0039044 FBgn0004647
