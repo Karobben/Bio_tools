@@ -15,7 +15,7 @@ OUTPUT = args.output
 import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-
+import multiprocessing as mp
 
 def Run(ID):
     url = "https://api.flybase.org/api/v1.0/chadoxml/" + ID
@@ -30,27 +30,16 @@ def Run(ID):
     TB = pd.DataFrame([Gene_Syambol, Gene_Ensembl]).T
     TB['ID'] = ID
     TB['SAMBOL'] = soup.find_all("name")[5].get_text()
-    return TB
+    TB.to_csv("Multi_"+str(ID) +".csv" )
 
-TB = pd.DataFrame()
-for ID in INPUT:
-    print(ID)
-    TMP = Run(ID)
-    TB =  pd.concat([TB, TMP])
-
-
-TB.to_csv(OUTPUT)
-
+def multicore(Pool=10):
+  pool = mp.Pool(processes=Pool)
+  for ID in INPUT:
+    # Working function "echo" and the arg 'i'
+    multi_res = [pool.apply_async(Run,(ID,))]
+  pool.close()
+  pool.join()
 
 
 
-
-
-'''
-
-    for ii in Orth_Homo:
-        for i in ii.find_all("dbxref_id"):
-            if i.find('name').get_text() == "Ensembl_Homo_sapiens":  
-                TMP = [i.find('accession').get_text()]
-        Gene_Ensembl += TMP
-'''
+multicore()
