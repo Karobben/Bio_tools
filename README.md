@@ -10,6 +10,8 @@
 |[Seq2tree.py](#seq2tree)| Quickest Pipeline to plot a tree from a fasta file with python and R script| 超快的fasta文件一键建树画图脚本|
 |[vcf2fasta.py](#vcf2fasta)||
 |[Dem2Homo.py](#Dem2Homo)|A py script to turn fly gene (Flybase id) to human ortholog genes|
+|[PDBreNumbering.py](#pdbrenumbering)|A py script to renumbering of resi from all chains in pdb file|
+
 
 ## <a id="ncbi_gsm">NCBI_GSM.py</a>
 
@@ -114,3 +116,12 @@ For Connect rest of intervenes, you can add `-c`
 ```bash
 Dem2Homo.py -i FBgn0039044 FBgn0004647
 ```
+
+## <a id="pdbrenumbering">PDBreNumbering.py</a>
+
+This script is for renumbering the residues in a PDB file. For some PDB structures, parts of the sequences may be missing, or they may use alternative numbering schemes such as Kabat numbering. This can make sequence retrieval or structure truncation more difficult and may confuse some software, such as FoldX. By running this script, it will automatically renumber each chain from 1 to the total number of amino acids it contains.
+
+```bash
+python PDBreNumbering.py -i input.pdb -o output.pdb
+```
+
