@@ -23,7 +23,7 @@ def renumber_pdb(input_file, output_file, start_resi=1):
         for chain in model:
             for residue in chain:
                 # Change the residue ID to the new_resi
-                residue.id = (' ', new_resi, ' ')
+                residue.id = (' ', f"tmp_{new_resi}", ' ')
                 new_resi += 1
 
     for model in structure:
